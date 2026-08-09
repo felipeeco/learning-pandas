@@ -3,9 +3,11 @@ import pandas as pd
 
 def get_ages_table() -> dict:
     df = pd.read_csv("data/Cars.csv", sep=";")
-    result = df[['Modelo','Aceleracion']]
+    df = df.dropna().reset_index()
+
+    print(df.dtypes)
 
     return {
-        "columns": result.columns.tolist(),
-        "rows": result.where(result.notna(), None).to_dict(orient="records"),
+        "columns": df.columns.tolist(),
+        "rows": df.to_dict(orient="records"),
     }

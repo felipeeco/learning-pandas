@@ -1,12 +1,11 @@
-import json
-
 import pandas as pd
+
 
 def get_ages_table() -> dict:
     df = pd.read_csv("data/Cars.csv", sep=";")
-    preview = df.head(10)
+    result = df[['Modelo','Aceleracion']]
 
     return {
-        "columns": preview.columns.tolist(),
-        "rows": json.loads(preview.to_json(orient="records")),
+        "columns": result.columns.tolist(),
+        "rows": result.where(result.notna(), None).to_dict(orient="records"),
     }

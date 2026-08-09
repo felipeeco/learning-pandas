@@ -31,6 +31,9 @@ Start the app:
 python app.py
 ```
 
+The development server watches `try_pandas.py` and restarts automatically
+whenever that file is saved.
+
 Then open <http://127.0.0.1:8000>.
 
 ## Practice ideas

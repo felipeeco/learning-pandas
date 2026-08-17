@@ -1,20 +1,9 @@
 import pandas as pd
-
-
+    
 def get_ages_table() -> dict:
     df = pd.read_csv("data/Cars.csv", sep=";")
     df = df.dropna().reset_index()
-
-    index_rename = {
-        "chevrolet chevelle malibu": "chevelle malibu"
-    }
-    column_rename = {
-        "Categoria": "Clase"
-    }
-
-    df = df.set_index("Modelo")
-    df = df.rename(index=index_rename, columns=column_rename)
-    df = df.reset_index()
+    df = df.rename(lambda x: x.lower(), axis=1)
 
     return {
         "columns": df.columns.tolist(),
